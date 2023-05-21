@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+
+    int a[n];
+    for (int i=0; i<n; i++)
+    {
+        cin>>a[i];
+    }
+    sort (a, a+n);
+
+    int res = a[0] + a[1] + a[2];
+    for (int i = 0; i<n-2; i++)
+    {
+        int s = m - a[i];
+
+        int j = n-1, k = i+1;
+        while (j > k)
+        {
+            while (j > k && a[j]+a[k] > s)
+                j--;
+            while (j > k && a[j]+a[k] <= s)
+            {
+                res = max(res, a[i] + a[j] + a[k]);
+                k++;
+            }
+        }
+    }
+
+    cout<<res;
+}
