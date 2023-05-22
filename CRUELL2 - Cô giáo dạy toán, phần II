@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int d;
+
+double a[15];
+
+double f(double x)
+{
+    double f=0;
+    for (int i=0; i<=d; i++)
+    {
+        f+=a[i]* pow(x,i);
+    }
+    return f;
+}
+
+int main()
+{
+    cin>>d;
+    for (int i=0; i<=d; i++)
+    {
+        cin>>a[i];
+    }
+
+    double left=-1000000, right=1000000;
+    double mid=(left + right)/2;
+    while (abs(f(mid)-0) >0.0005)
+    {
+        if (f(left) * f(mid) < 0) right=mid;
+        if (f(right) * f(mid) < 0) left=mid;
+        mid=(left + right)/2;
+    }
+    int n=mid*1000;
+    cout<<n;
+
+}
