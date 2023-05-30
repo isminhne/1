@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, a[100];
+bool stop = false;
+
+void khoitao()
+{
+    for (int i = 1; i <= n; i++)
+        a[i] = 0;
+}
+
+void sinh()
+{
+    int i=n;
+    while (i>0 && a[i]==1)
+    {
+        a[i] = 0;
+        i--;
+    }
+    if (i == 0)
+        stop = true;
+    else
+        a[i] = 1;
+}
+
+int main()
+{
+    int c, w[100], maxx=0;
+    cin>>c>>n;
+    for (int i=1; i<=n; i++)
+        cin>>w[i];
+
+    khoitao();
+    while (!stop)
+    {
+        int sum=0;
+        for (int i=1; i<=n; i++)
+        {
+            if (a[i] == 1)
+                sum+=w[i];
+        }
+        if ((sum > maxx) && (sum <= c))
+            swap (sum, maxx);
+        sinh();
+    }
+
+    cout<<maxx;
+}
