@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int a[100], n;
+bool stop = false;
+
+void khoitao() {
+    for (int i = 1; i <= 3; i++) {
+        a[i] = i;
+    }
+}
+
+void sinh() {
+    int i = 3;
+    while (i > 0 && a[i] == n - 3 + i) {
+        i--;
+    }
+    if (i == 0)
+        stop = true;
+    else
+        a[i]++;
+    while (i < 3) {
+        a[i + 1] = a[i] + 1;
+        i++;
+    }
+}
+
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int k, m;
+        cin >> k >> m;
+        n=k;
+        khoitao();
+
+        int b[120];
+        for (int i=1; i<=n; i++)
+            cin>>b[i];
+
+        int maxx=0;
+        while (!stop)
+        {
+            int sum=0;
+            for (int i=1; i<=3; i++)
+            {
+                for (int j=1; j<=n; j++)
+                {
+                    if (a[i] == j)
+                    {
+                        sum += b[j];
+                        break;
+                    }
+                }
+            }
+            if ((sum <= m) && (sum > maxx))
+                maxx = sum;
+            sinh();
+        }
+
+        cout<<maxx<<endl;
+    }
+    return 0;
+}
