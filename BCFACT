@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+long long giaiThua (int n)
+{
+    if (n>1) return giaiThua (n-1)*n;
+    else return 1;
+}
+ 
+int main()
+{
+    int n;
+ 
+    while(1)
+    {
+        cin>>n;
+        if (n==0) break;
+        cout<<giaiThua (n)<<endl;
+    }
+ 
+    return (0);
+} 
